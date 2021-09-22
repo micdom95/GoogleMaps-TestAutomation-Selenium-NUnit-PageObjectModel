@@ -1,9 +1,9 @@
 ﻿using GoogleMapsTests.Common.Enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using System;
+using Microsoft.Edge.SeleniumTools;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,13 +34,14 @@ namespace GoogleMapsTests.Common.Setup
                     break;
 
                 case DriverType.Edge:
-                    EdgeOptions edgeOptions = new EdgeOptions()
+                    var edgeOptions = new EdgeOptions()
                     {
                         AcceptInsecureCertificates = true,
                         PageLoadStrategy = PageLoadStrategy.Normal,
                     };
-
-                    _driver = new EdgeDriver(edgeOptions);
+                    edgeOptions.UseChromium = true;
+                    
+                    _driver = new EdgeDriver(AppDomain.CurrentDomain.BaseDirectory, edgeOptions);
                     break;
 
                 default:

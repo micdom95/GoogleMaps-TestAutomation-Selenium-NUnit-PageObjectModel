@@ -43,16 +43,61 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
             3, 
             15, 
             3)]
-        public void CheckDifferentRoutes_CheckTimeAndDistance_TimeAndDistanceWithProperValue(string firstAddress, string secondAddress, int onFootMinutesLimit, double onFootKilometersLimit, int byBicycleMinutesLimit, double byBicycleKilometersLimit)
+        public void CheckDifferentRoutes_CheckTimeAndDistanceOnGoogleChrome_TimeAndDistanceWithProperValue(string firstAddress, string secondAddress, int onFootMinutesLimit, double onFootKilometersLimit, int byBicycleMinutesLimit, double byBicycleKilometersLimit)
         {
             try
             {
-                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistance_TimeAndDistanceWithProperValue").AssignDevice("Google Chrome");
+                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistanceOnGoogleChrome_TimeAndDistanceWithProperValue").AssignDevice("Google Chrome");
                 using (IWebDriver _driver = DriverSetup.ReturnDriver(DriverType.Chrome))
                 {
                     var mainPageActions = new MainPageActions(_driver);
                     mainPageActions.OpenMainPage();
                     mainPageActions.AcceptCookiesButtonClick();
+                    mainPageActions.RouteButtonClick();
+                    mainPageActions.FirstPlaceDirectionRouteTextboxInput(firstAddress);
+                    mainPageActions.SecondPlaceDirectionRouteTextboxInput(secondAddress);
+                    mainPageActions.OnFootButtonClick();
+                    mainPageActions.SearchIconHoverOperations();
+                    mainPageActions.CheckMinutesValue(onFootMinutesLimit);
+                    mainPageActions.CheckKilometersValue(onFootKilometersLimit);
+                    mainPageActions.ByBicycleButtonClick();
+                    mainPageActions.CheckMinutesValue(byBicycleMinutesLimit);
+                    mainPageActions.CheckKilometersValue(byBicycleKilometersLimit);
+                    mainPageActions.ChangeDirectoryRouteButtonClick();
+                    mainPageActions.CheckMinutesValue(byBicycleMinutesLimit);
+                    mainPageActions.CheckKilometersValue(byBicycleKilometersLimit);
+                    mainPageActions.OnFootButtonClick();
+                    mainPageActions.CheckMinutesValue(onFootMinutesLimit);
+                    mainPageActions.CheckKilometersValue(onFootKilometersLimit);
+                    test.Log(Status.Pass, "Test that check time and distance for current route destination");
+                }
+            }
+            catch (Exception exception)
+            {
+                test.Fail(exception.StackTrace);
+                test.Log(Status.Fail, exception);
+            }
+        }
+
+        [Test]
+        [TestCase(
+            "Plac Defilad 1, Warszawa",
+            "Chłodna 51, Warszawa",
+            40,
+            3,
+            15,
+            3)]
+        public void CheckDifferentRoutes_CheckTimeAndDistanceOnMicrosoftEdge_TimeAndDistanceWithProperValue(string firstAddress, string secondAddress, int onFootMinutesLimit, double onFootKilometersLimit, int byBicycleMinutesLimit, double byBicycleKilometersLimit)
+        {
+            try
+            {
+                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistanceOnMicrosoftEdge_TimeAndDistanceWithProperValue").AssignDevice("Microsoft Edge");
+                using (IWebDriver _driver = DriverSetup.ReturnDriver(DriverType.Edge))
+                {
+                    var mainPageActions = new MainPageActions(_driver);
+                    mainPageActions.OpenMainPage();
+                    mainPageActions.AcceptCookiesButtonClick();
+                    mainPageActions.DecelineChromeInstallButtonClick();
                     mainPageActions.RouteButtonClick();
                     mainPageActions.FirstPlaceDirectionRouteTextboxInput(firstAddress);
                     mainPageActions.SecondPlaceDirectionRouteTextboxInput(secondAddress);
