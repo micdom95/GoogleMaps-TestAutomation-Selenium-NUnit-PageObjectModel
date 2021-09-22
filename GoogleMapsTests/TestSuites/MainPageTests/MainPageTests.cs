@@ -19,16 +19,15 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
     public class MainPageTests
     {
         ExtentReports extent;
-        ExtentReports report;
         ExtentHtmlReporter htmlReporter;
         ExtentTest test;
         //TODO Path
-        string path = Directory.GetCurrentDirectory();
+        string path = (@".\GoogleMapsTests");
 
         [OneTimeSetUp]
         public void setUpReports()
         {
-            htmlReporter = new ExtentHtmlReporter(path);
+            htmlReporter = new ExtentHtmlReporter(path,AventStack.ExtentReports.Reporter.Configuration.ViewStyle.Default);
             htmlReporter.Config.DocumentTitle = (@"Test reports.html");
             htmlReporter.Config.ReportName = ("Test automation for Google Maps");
             htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
@@ -50,7 +49,7 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
         {
             try
             {
-                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistance_TimeAndDistanceWithProperValue");
+                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistance_TimeAndDistanceWithProperValue").AssignDevice("Google Chrome");
                 using (IWebDriver _driver = DriverSetup.ReturnDriver(DriverType.Chrome))
                 {
                     var mainPageActions = new MainPageActions(_driver);
@@ -72,11 +71,13 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
                     mainPageActions.OnFootButtonClick();
                     mainPageActions.CheckMinutesValue(onFootMinutesLimit);
                     mainPageActions.CheckKilometersValue(onFootKilometersLimit);
+                    test.Pass("Test passed").Log(Status.Pass, "Test that check time and distance for current route destination");
                 }
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                test.Fail(e.StackTrace);
+                test.Fail(exception.StackTrace);
+                test.Log(Status.Fail, exception);
             }
         }
 
