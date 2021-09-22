@@ -22,12 +22,12 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
         ExtentHtmlReporter htmlReporter;
         ExtentTest test;
         //TODO Path
-        string path = (@".\GoogleMapsTests");
+        string path = (AppDomain.CurrentDomain.BaseDirectory);
 
         [OneTimeSetUp]
         public void setUpReports()
         {
-            htmlReporter = new ExtentHtmlReporter(path,AventStack.ExtentReports.Reporter.Configuration.ViewStyle.Default);
+            htmlReporter = new ExtentHtmlReporter(path, AventStack.ExtentReports.Reporter.Configuration.ViewStyle.Default);
             htmlReporter.Config.DocumentTitle = (@"Test reports.html");
             htmlReporter.Config.ReportName = ("Test automation for Google Maps");
             htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
@@ -37,10 +37,8 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
 
         [Test]
         [TestCase(
-            "Plac Defilad 1, " +
-            "Warszawa", 
-            "Chłodna 51, " +
-            "Warszawa", 
+            "Plac Defilad 1, Warszawa", 
+            "Chłodna 51, Warszawa", 
             40, 
             3, 
             15, 
@@ -71,7 +69,7 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
                     mainPageActions.OnFootButtonClick();
                     mainPageActions.CheckMinutesValue(onFootMinutesLimit);
                     mainPageActions.CheckKilometersValue(onFootKilometersLimit);
-                    test.Pass("Test passed").Log(Status.Pass, "Test that check time and distance for current route destination");
+                    test.Log(Status.Pass, "Test that check time and distance for current route destination");
                 }
             }
             catch (Exception exception)
