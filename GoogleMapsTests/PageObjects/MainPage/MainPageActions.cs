@@ -85,6 +85,7 @@ namespace GoogleMapsTests.PageObjects.MainPage
         {
             foreach (var option in CollectionToCheckMinutes)
             {
+                option.Displayed.Should().BeTrue();
                 var textValue = option.Text.Replace(" min", "");
                 var minutesValue = Convert.ToInt32(textValue);
                 minutesValue.Should().BeLessThan(minutesLimit);
@@ -96,6 +97,7 @@ namespace GoogleMapsTests.PageObjects.MainPage
         {
             foreach (var option in CollectionToCheckKilometers)
             {
+                option.Displayed.Should().BeTrue();
                 var textValue = option.Text.Replace(" km", "");
                 var kilometersValue = Convert.ToDouble(textValue);
                 kilometersValue.Should().BeLessThan(kilometersLimit);

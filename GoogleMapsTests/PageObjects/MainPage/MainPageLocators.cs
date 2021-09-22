@@ -30,9 +30,9 @@ namespace GoogleMapsTests.PageObjects.MainPage
 
 
         //Textboxy do wpisywania lokalizacji
-        public IWebElement FirstPlaceDirectionRouteTextbox => _driver.FindElement(By.XPath("//div[@class='gstl_51 sbib_a']//input[@class='tactile-searchbox-input']"));
+        public IWebElement FirstPlaceDirectionRouteTextbox => _driver.FindElement(By.XPath("//div[@id='directions-searchbox-0']//input[@class='tactile-searchbox-input']"));
 
-        public IWebElement SecondPlaceDirectionRouteTextbox => _driver.FindElement(By.XPath("//div[@class='gstl_52 sbib_a']//input[@class='tactile-searchbox-input']"));
+        public IWebElement SecondPlaceDirectionRouteTextbox => _driver.FindElement(By.XPath("//div[@id='directions-searchbox-1']//input[@class='tactile-searchbox-input']"));
 
         public IWebElement SearchIconHover => _driver.FindElement(By.XPath("//div[@id='directions-searchbox-1']//button[@aria-label='Szukaj']"));
 
