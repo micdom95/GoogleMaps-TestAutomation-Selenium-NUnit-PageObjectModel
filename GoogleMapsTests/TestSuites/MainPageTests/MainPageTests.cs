@@ -53,30 +53,27 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
         {
             try
             {
-                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistance_TimeAndDistanceWithProperValue").AssignDevice("Google Chrome");
-                //using (IWebDriver _driver = DriverSetup.ReturnDriver(DriverType.Chrome))
-                //{
-                    var mainPageActions = new MainPageActions(_driver);
-                    mainPageActions.OpenMainPage();
-                    mainPageActions.AcceptCookies();
-                    mainPageActions.ClickOnRouteButton();
-                    mainPageActions.EnterStartingPoint(firstAddress);
-                    mainPageActions.EnterDestination(secondAddress);
-                    mainPageActions.SelectTripOnFoot();
-                    mainPageActions.ClickOnSearchIcon();
-                    mainPageActions.CheckTravelTime(onFootMinutesLimit);
-                    mainPageActions.CheckTravelDistance(onFootKilometersLimit);
-                    mainPageActions.SelectBikeTrip();
-                    mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
-                    mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
-                    mainPageActions.ClickChangeDirectoryRouteButton();
-                    mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
-                    mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
-                    mainPageActions.SelectTripOnFoot();
-                    mainPageActions.CheckTravelTime(onFootMinutesLimit);
-                    mainPageActions.CheckTravelDistance(onFootKilometersLimit);
-                    test.Log(Status.Pass, "Test that check time and distance for current route destination");
-                //} pologować kroki
+                test = extent.CreateTest("GoogleMaps_CheckTimeAndDistanceForGivenRoutes").AssignDevice("Google Chrome");
+                var mainPageActions = new MainPageActions(_driver);
+                mainPageActions.OpenMainPage();
+                mainPageActions.AcceptCookies();
+                mainPageActions.ClickOnRouteButton();
+                mainPageActions.EnterStartingPoint(firstAddress);
+                mainPageActions.EnterDestination(secondAddress);
+                mainPageActions.SelectTripOnFoot();
+                mainPageActions.ClickOnSearchIcon();
+                mainPageActions.CheckTravelTime(onFootMinutesLimit);
+                mainPageActions.CheckTravelDistance(onFootKilometersLimit);
+                mainPageActions.SelectBikeTrip();
+                mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
+                mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
+                mainPageActions.ClickChangeDirectoryRouteButton();
+                mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
+                mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
+                mainPageActions.SelectTripOnFoot();
+                mainPageActions.CheckTravelTime(onFootMinutesLimit);
+                mainPageActions.CheckTravelDistance(onFootKilometersLimit);
+                test.Log(Status.Pass, "Test that check time and distance for current route destination"); 
             }
             catch (Exception exception)
             {
