@@ -24,7 +24,7 @@ namespace GoogleMapsTests.PageObjects.MainPage
             _driver.Navigate().GoToUrl("https://www.google.pl/maps/");
         }
 
-        public void AcceptCookiesButtonClick()
+        public void AcceptCookies()
         {
             WaitForAction.WaitUntilElementClickable(_driver, AcceptCookiesButton);
             AcceptCookiesButton.Displayed.Should().BeTrue();
@@ -37,25 +37,25 @@ namespace GoogleMapsTests.PageObjects.MainPage
             DecelineChromeInstallButton.Click();
         }
 
-        public void RouteButtonClick()
+        public void ClickOnRouteButton()
         {
             RouteButton.Displayed.Should().BeTrue();
             RouteButton.Click();
         }
 
-        public void OnFootButtonClick()
+        public void SelectTripOnFoot()
         {
             OnFootButton.Displayed.Should().BeTrue();
             OnFootButton.Click();
         }
 
-        public void ByBicycleButtonClick()
+        public void SelectBikeTrip()
         {
             ByBicycleButton.Displayed.Should().BeTrue();
             ByBicycleButton.Click();
         }
 
-        public void FirstPlaceDirectionRouteTextboxInput(string address)
+        public void EnterStartingPoint(string address)
         {
             WaitForAction.WaitUntilElementExists(_driver, By.XPath("//div[@class='gstl_51 sbib_a']//input[@class='tactile-searchbox-input']"));
             FirstPlaceDirectionRouteTextbox.Displayed.Should().BeTrue();
@@ -64,7 +64,7 @@ namespace GoogleMapsTests.PageObjects.MainPage
             FirstPlaceDirectionRouteTextbox.SendKeys(address);
         }
 
-        public void SecondPlaceDirectionRouteTextboxInput(string address)
+        public void EnterDestination(string address)
         {
             WaitForAction.WaitUntilElementExists(_driver, By.XPath("//div[@class='gstl_52 sbib_a']//input[@class='tactile-searchbox-input']"));
             SecondPlaceDirectionRouteTextbox.Displayed.Should().BeTrue();
@@ -73,20 +73,22 @@ namespace GoogleMapsTests.PageObjects.MainPage
             SecondPlaceDirectionRouteTextbox.SendKeys(address);
         }
 
-        public void SearchIconHoverOperations()
+        public void ClickOnSearchIcon()
         {
+            SecondPlaceDirectionRouteTextbox.Displayed.Should().BeTrue();
             Actions actions = new Actions(_driver);
             actions.MoveToElement(SecondPlaceDirectionRouteTextbox).Click().Perform();
+            SearchIconHover.Displayed.Should().BeTrue();
             actions.MoveToElement(SearchIconHover).Click().Perform();
         }
 
-        public void ChangeDirectoryRouteButtonClick()
+        public void ClickChangeDirectoryRouteButton()
         {
             ChangeDirectionRouteButton.Displayed.Should().BeTrue();
             ChangeDirectionRouteButton.Click();
         }
 
-        public void CheckMinutesValue(int minutesLimit)
+        public void CheckTravelTime(int minutesLimit)
         {
             foreach (var option in CollectionToCheckMinutes)
             {
@@ -98,7 +100,7 @@ namespace GoogleMapsTests.PageObjects.MainPage
             }
         }
 
-        public void CheckKilometersValue(double kilometersLimit)
+        public void CheckTravelDistance(double kilometersLimit)
         {
             foreach (var option in CollectionToCheckKilometers)
             {

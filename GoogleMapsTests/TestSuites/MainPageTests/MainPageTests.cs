@@ -28,8 +28,8 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
         public void OneTimeSetUp()
         {
             htmlReporter = new ExtentHtmlReporter(path, AventStack.ExtentReports.Reporter.Configuration.ViewStyle.Default);
-            htmlReporter.Config.DocumentTitle = (@"Test reports.html");
-            htmlReporter.Config.ReportName = ("Test automation for Google Maps");
+            htmlReporter.Config.DocumentTitle = "TestReports.html";
+            htmlReporter.Config.ReportName = "Test automation for Google Maps";
             htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
@@ -42,14 +42,14 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
         }
 
         [Test]
-        [TestCase(
-            "Plac Defilad 1, Warszawa", 
-            "Chłodna 51, Warszawa", 
-            40, 
-            3, 
-            15, 
-            3)]
-        public void CheckDifferentRoutes_CheckTimeAndDistanceForSpecifientRoutes_TimeAndDistanceWithProperValue(string firstAddress, string secondAddress, int onFootMinutesLimit, double onFootKilometersLimit, int byBicycleMinutesLimit, double byBicycleKilometersLimit)
+        [TestCase("Plac Defilad 1, Warszawa", "Chłodna 51, Warszawa", 40, 3, 15, 3)]
+        public void GoogleMaps_CheckTimeAndDistanceForGivenRoutes(
+            string firstAddress, 
+            string secondAddress, 
+            int onFootMinutesLimit, 
+            double onFootKilometersLimit, 
+            int byBicycleMinutesLimit, 
+            double byBicycleKilometersLimit)
         {
             try
             {
@@ -58,25 +58,25 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
                 //{
                     var mainPageActions = new MainPageActions(_driver);
                     mainPageActions.OpenMainPage();
-                    mainPageActions.AcceptCookiesButtonClick();
-                    mainPageActions.RouteButtonClick();
-                    mainPageActions.FirstPlaceDirectionRouteTextboxInput(firstAddress);
-                    mainPageActions.SecondPlaceDirectionRouteTextboxInput(secondAddress);
-                    mainPageActions.OnFootButtonClick();
-                    mainPageActions.SearchIconHoverOperations();
-                    mainPageActions.CheckMinutesValue(onFootMinutesLimit);
-                    mainPageActions.CheckKilometersValue(onFootKilometersLimit);
-                    mainPageActions.ByBicycleButtonClick();
-                    mainPageActions.CheckMinutesValue(byBicycleMinutesLimit);
-                    mainPageActions.CheckKilometersValue(byBicycleKilometersLimit);
-                    mainPageActions.ChangeDirectoryRouteButtonClick();
-                    mainPageActions.CheckMinutesValue(byBicycleMinutesLimit);
-                    mainPageActions.CheckKilometersValue(byBicycleKilometersLimit);
-                    mainPageActions.OnFootButtonClick();
-                    mainPageActions.CheckMinutesValue(onFootMinutesLimit);
-                    mainPageActions.CheckKilometersValue(onFootKilometersLimit);
+                    mainPageActions.AcceptCookies();
+                    mainPageActions.ClickOnRouteButton();
+                    mainPageActions.EnterStartingPoint(firstAddress);
+                    mainPageActions.EnterDestination(secondAddress);
+                    mainPageActions.SelectTripOnFoot();
+                    mainPageActions.ClickOnSearchIcon();
+                    mainPageActions.CheckTravelTime(onFootMinutesLimit);
+                    mainPageActions.CheckTravelDistance(onFootKilometersLimit);
+                    mainPageActions.SelectBikeTrip();
+                    mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
+                    mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
+                    mainPageActions.ClickChangeDirectoryRouteButton();
+                    mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
+                    mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
+                    mainPageActions.SelectTripOnFoot();
+                    mainPageActions.CheckTravelTime(onFootMinutesLimit);
+                    mainPageActions.CheckTravelDistance(onFootKilometersLimit);
                     test.Log(Status.Pass, "Test that check time and distance for current route destination");
-                //}
+                //} pologować kroki
             }
             catch (Exception exception)
             {
