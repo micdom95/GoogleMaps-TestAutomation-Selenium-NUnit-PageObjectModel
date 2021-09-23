@@ -87,17 +87,16 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
             3,
             15,
             3)]
-        public void CheckDifferentRoutes_CheckTimeAndDistanceOnMicrosoftEdge_TimeAndDistanceWithProperValue(string firstAddress, string secondAddress, int onFootMinutesLimit, double onFootKilometersLimit, int byBicycleMinutesLimit, double byBicycleKilometersLimit)
+        public void CheckDifferentRoutes_CheckTimeAndDistanceOnFirefox_TimeAndDistanceWithProperValue(string firstAddress, string secondAddress, int onFootMinutesLimit, double onFootKilometersLimit, int byBicycleMinutesLimit, double byBicycleKilometersLimit)
         {
             try
             {
-                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistanceOnMicrosoftEdge_TimeAndDistanceWithProperValue").AssignDevice("Microsoft Edge");
-                using (IWebDriver _driver = DriverSetup.ReturnDriver(DriverType.Edge))
+                test = extent.CreateTest("CheckDifferentRoutes_CheckTimeAndDistanceOnFirefox_TimeAndDistanceWithProperValue").AssignDevice("Firefox");
+                using (IWebDriver _driver = DriverSetup.ReturnDriver(DriverType.FireFox))
                 {
                     var mainPageActions = new MainPageActions(_driver);
                     mainPageActions.OpenMainPage();
                     mainPageActions.AcceptCookiesButtonClick();
-                    mainPageActions.DecelineChromeInstallButtonClick();
                     mainPageActions.RouteButtonClick();
                     mainPageActions.FirstPlaceDirectionRouteTextboxInput(firstAddress);
                     mainPageActions.SecondPlaceDirectionRouteTextboxInput(secondAddress);
