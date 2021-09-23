@@ -21,8 +21,7 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
         ExtentReports extent;
         ExtentHtmlReporter htmlReporter;
         ExtentTest test;
-        //TODO Path
-        string path = (AppDomain.CurrentDomain.BaseDirectory);
+        string path = AppDomain.CurrentDomain.BaseDirectory;
 
         [OneTimeSetUp]
         public void setUpReports()

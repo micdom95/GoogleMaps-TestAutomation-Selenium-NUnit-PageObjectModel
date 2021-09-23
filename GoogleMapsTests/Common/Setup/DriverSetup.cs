@@ -30,7 +30,13 @@ namespace GoogleMapsTests.Common.Setup
                     break;
 
                 case DriverType.FireFox:
-                    _driver = new FirefoxDriver();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions()
+                    {
+                        AcceptInsecureCertificates = true,
+                        PageLoadStrategy = PageLoadStrategy.Normal
+                    };
+                   
+                    _driver = new FirefoxDriver(firefoxOptions);
                     break;
 
                 case DriverType.Edge:

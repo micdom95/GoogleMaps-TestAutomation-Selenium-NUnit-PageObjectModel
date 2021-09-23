@@ -22,7 +22,6 @@ namespace GoogleMapsTests.PageObjects.MainPage
         public void OpenMainPage()
         {
             _driver.Navigate().GoToUrl("https://www.google.pl/maps/");
-            //_driver.Url.Should().Be("https://www.google.pl/maps/");
         }
 
         public void AcceptCookiesButtonClick()
