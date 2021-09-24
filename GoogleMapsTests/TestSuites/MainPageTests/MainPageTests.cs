@@ -28,7 +28,7 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
         public void OneTimeSetUp()
         {
             htmlReporter = new ExtentHtmlReporter(path, AventStack.ExtentReports.Reporter.Configuration.ViewStyle.Default);
-            htmlReporter.Config.DocumentTitle = "TestReports.html";
+            htmlReporter.Config.DocumentTitle = "Test Reports.html";
             htmlReporter.Config.ReportName = "Test automation for Google Maps";
             htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             extent = new ExtentReports();

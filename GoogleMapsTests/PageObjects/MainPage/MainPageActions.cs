@@ -90,7 +90,6 @@ namespace GoogleMapsTests.PageObjects.MainPage
                 var textValue = option.Text.Replace(" min", "");
                 var minutesValue = Convert.ToInt32(textValue);
                 minutesValue.Should().BeLessThan(minutesLimit);
-                
             }
         }
 
