@@ -31,12 +31,6 @@ namespace GoogleMapsTests.PageObjects.MainPage
             AcceptCookiesButton.Click();
         }
 
-        public void DecelineChromeInstallButtonClick()
-        {
-            DecelineChromeInstallButton.Displayed.Should().BeTrue();
-            DecelineChromeInstallButton.Click();
-        }
-
         public void ClickOnRouteButton()
         {
             RouteButton.Displayed.Should().BeTrue();

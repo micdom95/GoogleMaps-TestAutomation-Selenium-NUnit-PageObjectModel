@@ -67,12 +67,6 @@ namespace GoogleMapsTests.TestSuites.MainPageTests
                 mainPageActions.SelectBikeTrip();
                 mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
                 mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
-                mainPageActions.ClickChangeDirectoryRouteButton();
-                mainPageActions.CheckTravelTime(byBicycleMinutesLimit);
-                mainPageActions.CheckTravelDistance(byBicycleKilometersLimit);
-                mainPageActions.SelectTripOnFoot();
-                mainPageActions.CheckTravelTime(onFootMinutesLimit);
-                mainPageActions.CheckTravelDistance(onFootKilometersLimit);
                 test.Log(Status.Pass, "Test that check time and distance for current route destination"); 
             }
             catch (Exception exception)

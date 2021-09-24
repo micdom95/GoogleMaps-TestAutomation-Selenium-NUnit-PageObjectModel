@@ -22,8 +22,6 @@ namespace GoogleMapsTests.PageObjects.MainPage
 
         public IWebElement ChangeDirectionRouteButton => _driver.FindElement(By.XPath("//div[@class='widget-directions-icon reverse']"));
 
-        public IWebElement DecelineChromeInstallButton => _driver.FindElement(By.XPath("//button[@aria-label='NIE TERAZ']"));
-
         public IWebElement OnFootButton => _driver.FindElement(By.XPath("//img[@aria-label='Pieszo']"));
 
         public IWebElement ByBicycleButton => _driver.FindElement(By.XPath("//img[@aria-label='Na rowerze']"));
